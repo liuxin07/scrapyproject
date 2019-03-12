@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+from data.items import DataItem
 class GithubSpider(scrapy.Spider):
     name = 'github'
 
