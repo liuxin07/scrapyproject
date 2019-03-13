@@ -2,6 +2,9 @@ from sqlalchemy.orm import sessionmaker
 from data.models import Repository, engine
 class DataPipeline(object):
     def process_item(self, item, spider):
+        item['commits'] = int(item['commits'])
+        item['branches'] = int(item['branches'])
+        item['releases'] = int(item['releases'])
         self.session.add(Repository(**item))
         return item
 

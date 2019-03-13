@@ -23,7 +23,7 @@ class GithubSpider(scrapy.Spider):
 
     def parse_data(self, response):
         item = response.meta['item']
-        item['commits'] = response.xpath('.//li[1]//a/span/text()').extract()
-        item['branches'] = response.xpath('.//li[2]/a/span/text()').extract()
-        item['releases'] = response.xpath('.//li[3]/a/span/text()').extract()
+        item['commits'] = response.xpath('.//li[1]//a/span/text()').re_first(r'\n\s*(.*)')
+        item['branches'] = response.xpath('.//li[2]/a/span/text()').re_first(r'\n\s*(.*)')
+        item['releases'] = response.xpath('.//li[3]/a/span/text()').re_first(r'\n\s*(.*)')
         yield item
